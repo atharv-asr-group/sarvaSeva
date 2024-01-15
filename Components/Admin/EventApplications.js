@@ -24,15 +24,15 @@ export const PendingEvents=(props)=>{
                 setEvents(events);
                 for(var i=0;i<events.length;i++){
                     if(events[i].eventPublished==false){
-                        console.log('hi');
+                        // console.log('hi');
                         pendingEvent.push(events[i]);
                     }
                 }
-                console.log('printing sub')
-                console.log(pendingEvent)
+                // console.log('printing sub')
+                // console.log(pendingEvent)
                 setPendingEvents(pendingEvent);
-                console.log('printing pending')
-                console.log(pendingEvents);
+                // console.log('printing pending')
+                // console.log(pendingEvents);5
             }
         })
     },[])

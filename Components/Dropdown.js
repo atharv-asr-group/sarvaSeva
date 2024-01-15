@@ -11,7 +11,7 @@ import React, { useState } from 'react';
       if (value || isFocus) {
         return (
           <Text style={[styles.label, isFocus && { color: 'blue' }]}>
-            Dropdown label
+            SKills
           </Text>
         );
       }

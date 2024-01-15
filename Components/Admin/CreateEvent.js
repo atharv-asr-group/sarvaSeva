@@ -10,7 +10,7 @@ export const EventCreation=()=>{
     const [eventDate,setEventDate]=useState('');
     const [eventType,setEventType]=useState('');
     const [eventVenue,setEventVenue]=useState('');
-    
+    const [skillRequired,setSkillRequired]=useState('');
     const addEvent=async()=>{
         try{
             const docRef=await addDoc(collection(FIRESTORE_DB,'Event'),{
@@ -21,7 +21,8 @@ export const EventCreation=()=>{
                 eventType:eventType,
                 eventVenue:eventVenue,
                 eventPublished:true,
-                eventVolunteers:[]
+                eventVolunteers:[],
+                eventSkillRequired:skillRequired
             });
             console.log('event added with id: ',docRef.id);
         }
@@ -38,6 +39,7 @@ export const EventCreation=()=>{
             <TextInput value={eventEndTime} style={styles.input} placeholder="Event end time" autoCapitalize="none" onChangeText={(text)=>setEventEndTime(text)}></TextInput>
             <TextInput value={eventType} style={styles.input} placeholder="Event type" autoCapitalize="none" onChangeText={(text)=>setEventType(text)}></TextInput>
             <TextInput value={eventVenue} style={styles.input} placeholder="Event Venue" autoCapitalize="none" onChangeText={(text)=>setEventVenue(text)}></TextInput>
+            <TextInput value={eventVenue} style={styles.input} placeholder="Skills Required" autoCapitalize="none" onChangeText={(text)=>setSkillRequired(text)}></TextInput>
 
             <Button title="Add event" onPress={addEvent}/>
         </View>
