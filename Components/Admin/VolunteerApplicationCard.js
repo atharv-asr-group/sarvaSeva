@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc,doc, getDoc, updateDoc } from 'firebase/firestore';
+import { deleteDoc,doc, getDoc,updateDoc } from 'firebase/firestore';
 import {TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native';
 import { FIRESTORE_DB } from '../../FirebaseConfig';
 
@@ -7,47 +7,32 @@ const Divider = () => {
     return <View style={styles.divider} />;
   };
 
-export const EventCardHelper=(props)=>{
-   const eventId=props.id;
+export const VolunteerApplicationCard=(props)=>{
+    
+  //  const eventId=props.id;
+   const ref =doc(FIRESTORE_DB, 'Event',props.eventId)
+    console.log('props application:',props.eventVolunteers);
+    const apply=async()=>{
+        if(props.eventVolunteers.indexOf(props.volunteerId)==-1){
+            props.eventVolunteers.push(props.volunteerId);
+            const ids=props.eventVolunteers;
+            console.log('id of volunteer is :', ids);
+            updateDoc(ref,{eventVolunteers:ids});
+        }
+        
 
-   const ref =doc(FIRESTORE_DB, 'Event',eventId)
-   const application=async()=>{
-    try{
-        const docRef=await addDoc(collection(FIRESTORE_DB,'VolunteerRequest'),{
-            eventId:eventId,
-            volunteerId:props.volunteerId,
-            eventVolunteers:props.eventVolunteers
-        })
-        console.log('volunteer request added with id: ',docRef.id);
     }
-    catch(e){
-        console.log('error adding application of volunteer: ',e);
-    }
-   }
     return(
         
         <View style={styles.container}>
-            <View style={styles.leftside}>
-                <Text>Start Date</Text>
-                <Text>{props.startDate}</Text>
-                <Divider />
-                <Text>Time</Text>
-                <Text>{props.endDate}</Text>
-
-            </View>
+            
             <View>
-                <Text> {props.title}</Text>
-                <TouchableOpacity onPress={()=>{
-                  props.navigation.navigate('ViewDetails',{date:props.startDate,time:props.startTime,endTime:props.endTime,venue:props.venue,type:props.type})
-                }}>
+                <Text> event-{props.eventId}</Text>
+                <Text> Volunteer-{props.volunteerId}</Text>
+                <TouchableOpacity onPress={apply}>
                 <Text
                 style={styles.button}
-                >View Details</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={application}>
-                <Text
-                style={styles.button}
-                >Apply in the event</Text>
+                >Approve</Text>
             </TouchableOpacity>
             </View>
         </View>
@@ -69,6 +54,8 @@ const styles=StyleSheet.create({
         margin: 10,
         paddingTop: 10,
         paddingBottom: 10,
+        // paddingLeft: 30,
+        // paddingRight: 15,
         ...Platform.select({
             ios: {
               shadowColor: 'black',

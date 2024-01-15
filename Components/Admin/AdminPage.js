@@ -19,7 +19,7 @@ export const AdminPage=(props)=>{
       <TouchableOpacity onPress={() => props.navigation.navigate('PendingEvents')} style={styles.button}>
       <Text style={styles.buttons}>Event Applications</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => props.navigation.navigate('PendingEvents')} style={styles.button}>
+      <TouchableOpacity onPress={() => props.navigation.navigate('VolunteerApplication')} style={styles.button}>
       <Text style={styles.buttons}>Volunteering Applications</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => props.navigation.navigate('DefineSkill')} style={styles.button}>

@@ -6,17 +6,9 @@ import { FIRESTORE_DB } from '../../FirebaseConfig';
 import DropdownComponent from '../Dropdown';
 
 
-const data = [
-    { label: 'Item 600', value: '1' },
-    { label: 'Item 2', value: '2' },
-    { label: 'Item 3', value: '3' },
-    { label: 'Item 4', value: '4' },
-    { label: 'Item 5', value: '5' },
-    { label: 'Item 6', value: '6' },
-    { label: 'Item 7', value: '7' },
-    { label: 'Item 8', value: '8' },
-  ];
 
+
+const skilldata=[];
 export const HelperSignup=(props)=>{
     const [name,setName]=useState('');
     const [phone,setPhone]=useState('');
@@ -52,21 +44,36 @@ export const HelperSignup=(props)=>{
                     skills.push({
                         id:doc.id,
                         ...doc.data()
-                    })
+                    }) 
                 })
             setSkillsArray(skills);
+
             }
         })
+        console.log("skillsArray:");
+        console.log(skillsArray);
+        
     },[]);
-    console.log(skillsArray);
+    // console.log("skilldata:");
+    // console.log(skilldata);
+    if (skilldata.length<1){
+        Object.values(skillsArray).forEach((value) => {
+        skilldata.push({
+            label: value.skill,
+            value :value.skill
+        })
+        // console.log(value);
+
+      });}
     return (
         <View style={styles.container}>
             <TextInput value={name} style={styles.input} placeholder="Name" autoCapitalize="none" onChangeText={(text)=>setName(text)}></TextInput>
             <TextInput value={phone} style={styles.input} placeholder="Phone" autoCapitalize="none" onChangeText={(text)=>setPhone(text)}></TextInput>
             <TextInput value={address} style={styles.input} placeholder="Address" autoCapitalize="none" onChangeText={(text)=>setAddress(text)}></TextInput>
             <TextInput value={aadharno} style={styles.input} placeholder="Aadhar number" autoCapitalize="none" onChangeText={(text)=>setAadharno(text)}></TextInput>
-            <TextInput value={skills} style={styles.input} placeholder="Skills" autoCapitalize="none" onChangeText={(text)=>setSkills(text)}></TextInput>
-            <DropdownComponent data={data}/>
+            {/* <TextInput value={skills} style={styles.input} placeholder="Skills" autoCapitalize="none" onChangeText={(text)=>setSkills(text)}></TextInput> */}
+            
+            <DropdownComponent data={skilldata} setSkills={setSkills} />
             <TouchableOpacity
       onPress={()=>addHelper()}
       >

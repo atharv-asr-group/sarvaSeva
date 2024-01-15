@@ -3,8 +3,6 @@ import React, { useState } from 'react';
   import { Dropdown } from 'react-native-element-dropdown';
   import AntDesign from '@expo/vector-icons/AntDesign';
 
- 
-
   const DropdownComponent = (props) => {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
@@ -41,6 +39,7 @@ import React, { useState } from 'react';
           onBlur={() => setIsFocus(false)}
           onChange={item => {
             setValue(item.value);
+            props.setSkills(item.value);
             setIsFocus(false);
           }}
           renderLeftIcon={() => (

@@ -17,6 +17,7 @@ import { ViewDetails } from './Components/Admin/ViewDetails';
 import { ViewDetailsVolunteer } from './Components/Admin/ViewDetailsVolunteer';
 import { EventCardHelper } from './Components/Helper/EventCardHelper';
 import ApprovedEventsHelper from './Components/Helper/ApprovedEventsHelper';
+import VolunteerApplication from './Components/Admin/VolunteerApplication';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
             <Stack.Screen name="ViewDetailsVolunteer" component={ViewDetailsVolunteer} options={{title:"Event Details"}} />
             <Stack.Screen name="EventCardHelper" component={EventCardHelper} options={{title:"Events card"}} />
             <Stack.Screen name="ApprovedEventsHelper" component={ApprovedEventsHelper} options={{title:"Events to Apply"}} />
+            <Stack.Screen name="VolunteerApplication" component={VolunteerApplication} options={{title:""}} />
 
             {/* <Stack.Screen name="Welcome" component={WelcomeScreen} options={{title:"Welcome"}} /> */}
             {/* <Stack.Screen name="VolunteerApplication" component={VolunteerApplication} options={{title:"Volunteer"}} /> */}
